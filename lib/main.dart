@@ -4,9 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopix_user/core/constant.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/resaurant_view.dart';
-import 'package:shopix_user/feature/cart/presentation/cart_view.dart';
+import 'package:shopix_user/feature/cart/presentation/views/cart_view.dart';
 import 'package:shopix_user/feature/checkout/presentation/check_out_view.dart';
 import 'package:shopix_user/feature/home/presentation/views/home_view.dart';
+import 'package:shopix_user/feature/orders/presentation/views/orders_info.dart';
+import 'package:shopix_user/feature/orders/presentation/views/oreders_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         kRestaurant: (context) => const RestaurantView(),
         kCart: (context) => const CartView(),
         kCheckout: (context) => const CheckOutView(),
+        kOrdersview: (context) => const OredersView(),
+        kOrderinfo: (context) => const OrdersInfo(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -56,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _screens = const [
     HomeView(),
-    Center(child: Text('Orders Screen')),
+    OredersView(),
     Center(child: Text('Favorites Screen')),
     Center(child: Text('profile Screen')),
   ];
