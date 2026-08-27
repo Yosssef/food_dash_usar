@@ -1,4 +1,4 @@
-# shopix_user
+# foot_dash_user
 
 A new Flutter project.
 
