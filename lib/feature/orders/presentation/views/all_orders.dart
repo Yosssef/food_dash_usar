@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/all_orders/order_card.dart';
-import 'package:shopix_user/feature/orders/presentation/widgets/all_orders/status_pill.dart';
 
 class OredersView extends StatelessWidget {
   const OredersView({super.key});
