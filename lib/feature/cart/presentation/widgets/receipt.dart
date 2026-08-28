@@ -21,12 +21,12 @@ class Receipt extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          children: [
-            SizedBox(height: 20.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 5.r),
-              child: Row(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 5.r),
+          child: Column(
+            children: [
+              SizedBox(height: 20.h),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -47,10 +47,7 @@ class Receipt extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 5.r),
-              child: Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -71,10 +68,7 @@ class Receipt extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 5.r),
-              child: Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -95,22 +89,9 @@ class Receipt extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              width: 350.h,
-              height: 20.h,
-              child: CustomPaint(
-                painter: DashedVerticalLinePainter(
-                  color: Colors.grey.shade400,
-                  dashHeight: 4,
-                  dashSpace: 5,
-                  strokeWidth: 1.5,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 5.r),
-              child: Row(
+              DashedDivider(),
+
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -131,41 +112,51 @@ class Receipt extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class DashedVerticalLinePainter extends CustomPainter {
+class DashedDivider extends StatelessWidget {
   final Color color;
-  final double dashHeight;
+  final double dashWidth;
   final double dashSpace;
-  final double strokeWidth;
+  final double thickness;
 
-  DashedVerticalLinePainter({
-    this.color = Colors.grey,
-    this.dashHeight = 5.0,
-    this.dashSpace = 3.0,
-    this.strokeWidth = 1.0,
+  const DashedDivider({
+    super.key,
+    this.color = const Color(0xffBDBDBD),
+    this.dashWidth = 6,
+    this.dashSpace = 3,
+    this.thickness = 1.4,
   });
 
   @override
-  void paint(Canvas canvas, Size size) {
-    double startY = 0;
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
-
-    while (startY < size.width) {
-      canvas.drawLine(Offset(startY, 0), Offset(startY + dashHeight, 0), paint);
-      startY += dashHeight + dashSpace;
-    }
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final count = (constraints.maxWidth / (dashWidth + dashSpace)).floor();
+        return SizedBox(
+          height: thickness,
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(count, (_) {
+              return Padding(
+                padding: EdgeInsets.only(right: dashSpace),
+                child: Container(
+                  width: dashWidth,
+                  height: thickness,
+                  color: color,
+                ),
+              );
+            }),
+          ),
+        );
+      },
+    );
   }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
