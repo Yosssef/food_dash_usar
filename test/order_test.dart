@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shopix_user/feature/orders/presentation/views/oreders_view.dart';
+import 'package:shopix_user/feature/orders/presentation/views/all_orders.dart';
 
 void main() {
   group('OrderModel Tests', () {

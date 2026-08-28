@@ -114,6 +114,7 @@ class OrderHistoryCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Flexible(
                                 child: Text(
@@ -127,8 +128,8 @@ class OrderHistoryCard extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Spacer(),
-                              _StatusPill(status: order.status),
+
+                              StatusPill(status: order.status),
                             ],
                           ),
                           SizedBox(height: 5.h),
@@ -191,9 +192,9 @@ class OrderHistoryCard extends StatelessWidget {
 
 enum OrderStatus { delivered, cancelled, preparing }
 
-class _StatusPill extends StatelessWidget {
+class StatusPill extends StatelessWidget {
   final OrderStatus status;
-  const _StatusPill({required this.status});
+  const StatusPill({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {

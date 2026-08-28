@@ -8,7 +8,7 @@ import 'package:shopix_user/feature/cart/presentation/views/cart_view.dart';
 import 'package:shopix_user/feature/checkout/presentation/views/check_out_view.dart';
 import 'package:shopix_user/feature/home/presentation/views/home_view.dart';
 import 'package:shopix_user/feature/orders/presentation/views/orders_info.dart';
-import 'package:shopix_user/feature/orders/presentation/views/oreders_view.dart';
+import 'package:shopix_user/feature/orders/presentation/views/all_orders.dart';
 
 void main() {
   runApp(const MyApp());
