@@ -62,10 +62,10 @@ class CartItemTile extends StatelessWidget {
             children: [
               Text(
                 item.name,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1E1E1E),
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
               const SizedBox(height: 4),
@@ -93,7 +93,11 @@ class CartItemTile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // Minus Button
-                _buildCircleButton(icon: Icons.remove, onTap: onDecrement),
+                _buildCircleButton(
+                  icon: Icons.remove,
+                  onTap: onDecrement,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
                   child: Text(
@@ -106,7 +110,11 @@ class CartItemTile extends StatelessWidget {
                   ),
                 ),
                 // Plus Button
-                _buildCircleButton(icon: Icons.add, onTap: onIncrement),
+                _buildCircleButton(
+                  icon: Icons.add,
+                  onTap: onIncrement,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
               ],
             ),
           ),
@@ -118,16 +126,14 @@ class CartItemTile extends StatelessWidget {
   Widget _buildCircleButton({
     required IconData icon,
     required VoidCallback onTap,
+    required Color color,
   }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.all(6),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-        ),
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         child: Icon(icon, size: 16, color: const Color(0xFF4A6B4E)),
       ),
     );

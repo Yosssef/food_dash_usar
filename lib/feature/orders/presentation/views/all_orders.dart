@@ -8,36 +8,38 @@ class OredersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 8.r),
-            sliver: SliverToBoxAdapter(
-              child: Text(
-                "Your Orders",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 27.sp,
-                  fontWeight: FontWeight.bold,
+    return Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: const ScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 8.r),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  "Your Orders",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 27.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              final order = orders[index];
-              return OrderHistoryCard(
-                order: order,
-                onReorder: () {},
-                onRate: () {},
-                ontap: () => Navigator.pushNamed(context, kOrderinfo),
-              );
-            }, childCount: orders.length),
-          ),
-          SliverPadding(padding: EdgeInsetsGeometry.only(bottom: 80.h)),
-        ],
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final order = orders[index];
+                return OrderHistoryCard(
+                  order: order,
+                  onReorder: () {},
+                  onRate: () {},
+                  ontap: () => Navigator.pushNamed(context, kOrderinfo),
+                );
+              }, childCount: orders.length),
+            ),
+            SliverPadding(padding: EdgeInsetsGeometry.only(bottom: 80.h)),
+          ],
+        ),
       ),
     );
   }

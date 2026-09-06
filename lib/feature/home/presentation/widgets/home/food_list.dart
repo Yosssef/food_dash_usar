@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 
 class FoodList extends StatelessWidget {
   const FoodList({super.key});
@@ -19,7 +20,17 @@ class FoodList extends StatelessWidget {
             child: buildCategoryItem(
               icon: categories[index].icon,
               label: categories[index].title,
+              color: Colors.white,
               backgroundColor: categories[index].backgroundColor,
+              ontap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => RestaurantsResultsView(
+                    mode: ResultsMode.category,
+                    initialCategory: categories[index].title,
+                  ),
+                ),
+              ),
             ),
           );
         },
@@ -32,34 +43,39 @@ Widget buildCategoryItem({
   required FaIconData icon,
   required String label,
   required Color backgroundColor,
+  required VoidCallback ontap,
+  required Color color,
 }) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 4.r),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: 70.w,
-          height: 38.h,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(20.r),
+  return GestureDetector(
+    onTap: ontap,
+    child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 4.r),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 70.w,
+            height: 38.h,
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
+            child: Center(
+              child: FaIcon(icon, color: color, size: 20.sp),
+            ),
           ),
-          child: Center(
-            child: FaIcon(icon, color: Colors.white, size: 20.sp),
-          ),
-        ),
-        SizedBox(height: 6.h),
+          SizedBox(height: 6.h),
 
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF6E6E6E),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF6E6E6E),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

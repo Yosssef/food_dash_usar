@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body.dart';
 
 class MenuItemCard extends StatelessWidget {
   final MenuItemModel item;
@@ -9,15 +9,16 @@ class MenuItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final schem = Theme.of(context).colorScheme;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: schem.surfaceContainer,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: schem.shadow.withValues(alpha: 0.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -30,7 +31,8 @@ class MenuItemCard extends StatelessWidget {
             child: Container(
               width: 75.r,
               height: 75.r,
-              color: const Color(0xffFAF6EF),
+              color: Theme.of(context).colorScheme.surface,
+
               child: Image.network(
                 item.imageUrl,
                 fit: BoxFit.cover,

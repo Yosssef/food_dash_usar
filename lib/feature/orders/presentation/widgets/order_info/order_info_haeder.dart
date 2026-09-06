@@ -16,7 +16,7 @@ class OrderInfoHeader extends StatelessWidget {
               height: 50.h,
               width: 50.w,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.surfaceContainer,
                 borderRadius: BorderRadius.all(Radius.circular(20.r)),
                 boxShadow: [
                   BoxShadow(

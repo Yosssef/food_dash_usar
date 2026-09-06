@@ -28,7 +28,7 @@ class ToggleTab extends StatelessWidget {
           ),
           color: selected
               ? color.withValues(alpha: 0.1)
-              : Theme.of(context).colorScheme.onPrimary,
+              : Theme.of(context).colorScheme.surfaceContainer,
         ),
         padding: EdgeInsets.symmetric(vertical: 12.h),
         child: Center(

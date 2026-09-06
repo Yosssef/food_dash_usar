@@ -26,11 +26,11 @@ class DeliveryPartnerCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
-        color: scheme.onPrimary,
+        color: scheme.surfaceContainer,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: scheme.shadow.withValues(alpha: 0.07),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

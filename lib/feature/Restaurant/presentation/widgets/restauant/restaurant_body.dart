@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body/category_item.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body/hot_offer_banner.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body/manu_haedr_button.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body/menu_item_card.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body/restaurant_info.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body/restaurant_name.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/category_item.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/hot_offer_banner.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/manu_haedr_button.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/menu_item_card.dart';
+
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/restaurant_info.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/restaurant_name.dart';
 
 class RestaurantBody extends StatefulWidget {
   const RestaurantBody({super.key});

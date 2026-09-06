@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurants_header.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurants_header.dart';
 
 class RestaurantView extends StatelessWidget {
   const RestaurantView({super.key});

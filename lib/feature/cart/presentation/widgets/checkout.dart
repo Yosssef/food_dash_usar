@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
 
 class Checkout extends StatelessWidget {
-  const Checkout({
-    super.key,
-  });
+  const Checkout({super.key});
 
   @override
   Widget build(BuildContext context) {

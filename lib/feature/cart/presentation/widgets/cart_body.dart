@@ -17,7 +17,7 @@ class CartBody extends StatelessWidget {
             left: 20.w,
             right: 20.w,
             top: 20.h,
-            bottom: 90.h,
+            bottom: 180.h,
           ),
           child: Column(
             children: [CartHaeder(), OrdarDatiel(), Coupon(), Receipt()],

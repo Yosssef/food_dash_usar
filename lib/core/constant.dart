@@ -1,6 +1,12 @@
 final String kHome = "home";
 final String kRestaurant = "Restaurant";
+final String kRestaurantResults = "RestaurantResults";
 final String kCart = "cart";
 final String kCheckout = "checkout";
 final String kOrdersview = "orders";
 final String kOrderinfo = "orderinfo";
+final String kLogin = "login";
+final String kRegister = "Register";
+final String kProfile = "Profile";
+final String kSettings = "Settings";
+final String kSplach = "Splach";

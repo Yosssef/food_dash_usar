@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
-import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurant_body.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body.dart';
 
 class CategoryGridTile extends StatelessWidget {
   final CategoryModel category;
@@ -14,15 +14,16 @@ class CategoryGridTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: scheme.surfaceContainer,
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
+              color: scheme.shadow.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -44,17 +45,17 @@ class CategoryGridTile extends StatelessWidget {
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;
                     return Container(
-                      color: const Color(0xffFAF6EF),
+                      color: Theme.of(context).colorScheme.surfaceContainer,
                       child: const Center(
                         child: CircularProgressIndicator(strokeWidth: 2),
                       ),
                     );
                   },
                   errorBuilder: (context, error, stackTrace) => Container(
-                    color: const Color(0xffFAF6EF),
+                    color: Theme.of(context).colorScheme.surfaceContainer,
                     child: Icon(
                       Icons.fastfood,
-                      size: 32.r,
+                      size: 55.r,
                       color: Theme.of(context).colorScheme.primary,
                     ),
                   ),

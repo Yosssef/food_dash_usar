@@ -23,12 +23,14 @@ class MenuHeaderButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: Theme.of(context).colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(20.r),
           border: selected ? Border.all(color: color, width: 1.4) : null,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
+              color: Theme.of(
+                context,
+              ).colorScheme.shadow.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -37,6 +39,7 @@ class MenuHeaderButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            SizedBox(width: 8.w),
             Icon(icon, color: color),
             Padding(
               padding: EdgeInsets.all(8.r),

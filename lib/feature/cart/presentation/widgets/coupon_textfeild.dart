@@ -9,7 +9,7 @@ class Coupon extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         filled: true,
-        fillColor: Theme.of(context).colorScheme.onPrimary,
+        fillColor: Theme.of(context).colorScheme.surfaceContainer,
         hintText: "Coupon Code",
         hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 22.sp),
         prefixIcon: Icon(

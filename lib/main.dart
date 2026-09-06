@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:shopix_user/core/constant.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/resaurant_view.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
+import 'package:shopix_user/feature/auth/presentation/views/login_view.dart';
+import 'package:shopix_user/feature/auth/presentation/views/register_view.dart';
+import 'package:shopix_user/feature/auth/presentation/views/splash_view.dart';
 import 'package:shopix_user/feature/cart/presentation/views/cart_view.dart';
 import 'package:shopix_user/feature/checkout/presentation/views/check_out_view.dart';
 import 'package:shopix_user/feature/home/presentation/views/home_view.dart';
+import 'package:shopix_user/feature/home/presentation/views/profile_view.dart';
+import 'package:shopix_user/feature/home/presentation/views/setting_view.dart';
 import 'package:shopix_user/feature/orders/presentation/views/orders_info.dart';
 import 'package:shopix_user/feature/orders/presentation/views/all_orders.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FoodDash());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FoodDash extends StatelessWidget {
+  const FoodDash({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +33,18 @@ class MyApp extends StatelessWidget {
         kCheckout: (context) => const CheckOutView(),
         kOrdersview: (context) => const OredersView(),
         kOrderinfo: (context) => const OrdersInfo(),
+        kProfile: (context) => const ProfileView(),
+        kSplach: (context) => const SplashView(),
+        kSettings: (context) => const SettingsView(),
+        kRegister: (context) => const RegisterView(),
+        kLogin: (context) => const LoginView(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
+        fontFamily: 'Cairo',
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
+
           primary: Color(0xffE0A23A),
           onPrimary: Colors.white,
           secondary: Color.fromARGB(255, 53, 109, 70),
@@ -40,10 +52,33 @@ class MyApp extends StatelessWidget {
           error: Color(0xffD6543F),
           onError: Colors.white,
           surface: Color(0xffFAF6EF),
+          surfaceContainer: Colors.white,
+          surfaceContainerHighest: Color.fromARGB(240, 255, 255, 255),
+
           onSurface: Colors.black87,
+          shadow: Colors.black,
+
+          //
+          //
+          //
+          //
+          // primary: Color.fromARGB(255, 3, 149, 93),
+          // onPrimary: Colors.white,
+
+          // secondary: Color.fromARGB(255, 152, 70, 220),
+          // onSecondary: Colors.white,
+
+          // error: Color(0xFFE52E2E),
+          // onError: Colors.white,
+
+          // surface: Color(0xFF10141D),
+          // surfaceContainer: Color.fromARGB(255, 39, 39, 49),
+          // surfaceContainerHighest: Color.fromARGB(240, 50, 50, 50),
+          // onSurface: Color(0xFFEFF2F7),
+          // shadow: Colors.white,
         ),
       ),
-      initialRoute: kHome,
+      initialRoute: kSplach,
     );
   }
 }
@@ -58,34 +93,60 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeView(),
-    OredersView(),
-    Center(child: Text('Favorites Screen')),
-    Center(child: Text('profile Screen')),
-  ];
+  final List<Widget?> _loadedScreens = [const HomeView(), null, null, null];
+
+  Widget _getScreen(int index) {
+    if (_loadedScreens[index] == null) {
+      switch (index) {
+        case 1:
+          _loadedScreens[1] = const OredersView();
+          break;
+        case 2:
+          _loadedScreens[2] = const RestaurantsResultsView(
+            mode: ResultsMode.favorites,
+          );
+          break;
+        case 3:
+          _loadedScreens[3] = const SettingsView();
+          break;
+      }
+    }
+    return _loadedScreens[index]!;
+  }
 
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).colorScheme.primary;
-
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+
       body: Stack(
         children: [
           Positioned.fill(
-            child: IndexedStack(index: _currentIndex, children: _screens),
+            child: RepaintBoundary(
+              child: LazyIndexedStack(
+                index: _currentIndex,
+                children: List.generate(4, (index) {
+                  if (_loadedScreens[index] != null || index == _currentIndex) {
+                    return _getScreen(index);
+                  }
+                  return const SizedBox.shrink();
+                }),
+              ),
+            ),
           ),
 
           Positioned(
-            left: 25.w,
-            right: 40.w,
+            left: 60.w,
+            right: 60.w,
             bottom: 5.h,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.r),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.12),
+                    color: scheme.shadow.withValues(alpha: 0.04),
                     blurRadius: 16,
                     spreadRadius: 2,
                     offset: const Offset(0, 4),
@@ -101,17 +162,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       _currentIndex = index;
                     });
                   },
+                  showUnselectedLabels: false,
                   type: BottomNavigationBarType.fixed,
-                  backgroundColor: Colors.white,
+                  backgroundColor: scheme.surfaceContainerHighest,
                   selectedItemColor: primaryColor,
                   unselectedItemColor: Colors.grey.shade400,
                   selectedLabelStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 14.sp,
                   ),
                   unselectedLabelStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
                   ),
                   items: const [
                     BottomNavigationBarItem(
@@ -141,6 +203,45 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class LazyIndexedStack extends StatefulWidget {
+  final int index;
+  final List<Widget> children;
+
+  const LazyIndexedStack({
+    super.key,
+    required this.index,
+    required this.children,
+  });
+
+  @override
+  State<LazyIndexedStack> createState() => _LazyIndexedStackState();
+}
+
+class _LazyIndexedStackState extends State<LazyIndexedStack> {
+  late final Set<int> _everBuilt = {widget.index};
+
+  @override
+  void didUpdateWidget(covariant LazyIndexedStack oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Once a tab has been visited, its real widget stays built forever
+    // after that (so switching tabs still preserves scroll position,
+    // form input, etc. — same guarantee IndexedStack normally gives you).
+    _everBuilt.add(widget.index);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IndexedStack(
+      index: widget.index,
+      children: List.generate(widget.children.length, (i) {
+        return _everBuilt.contains(i)
+            ? widget.children[i]
+            : const SizedBox.shrink();
+      }),
     );
   }
 }

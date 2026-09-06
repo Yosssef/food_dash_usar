@@ -14,11 +14,13 @@ class CartHaeder extends StatelessWidget {
             height: 50.h,
             width: 50.w,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.surfaceContainer,
               borderRadius: BorderRadius.all(Radius.circular(20.r)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.shadow.withValues(alpha: 0.03),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),

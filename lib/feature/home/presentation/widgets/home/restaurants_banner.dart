@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 
 class RestaurantsBanner extends StatelessWidget {
   const RestaurantsBanner({super.key});
@@ -17,12 +18,20 @@ class RestaurantsBanner extends StatelessWidget {
             fontWeight: FontWeight.w900,
           ),
         ),
-        Text(
-          "see all",
-          style: TextStyle(
-            fontSize: 16.sp,
-            color: Theme.of(context).colorScheme.secondary,
-            fontWeight: FontWeight.w700,
+        GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => RestaurantsResultsView(mode: ResultsMode.seeall),
+            ),
+          ),
+          child: Text(
+            "see all",
+            style: TextStyle(
+              fontSize: 16.sp,
+              color: Theme.of(context).colorScheme.secondary,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ],

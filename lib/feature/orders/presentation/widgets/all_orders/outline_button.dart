@@ -13,8 +13,11 @@ class OutlineButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14.r),
-          border: Border.all(color: Colors.grey.shade300, width: 1.3),
-          color: Theme.of(context).colorScheme.onPrimary,
+          border: Border.all(
+            color: Theme.of(context).colorScheme.surface,
+            width: 1.3,
+          ),
+          color: Theme.of(context).colorScheme.surfaceContainer,
         ),
         padding: EdgeInsets.symmetric(vertical: 9.h, horizontal: 14.w),
         child: Text(
