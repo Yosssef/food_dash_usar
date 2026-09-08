@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/all_orders/order_card.dart';
 
 class OredersView extends StatelessWidget {
@@ -17,7 +18,7 @@ class OredersView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 8.r),
               sliver: SliverToBoxAdapter(
                 child: Text(
-                  "Your Orders",
+                  context.tr('orders.your_orders'),
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.secondary,
                     fontSize: 27.sp,

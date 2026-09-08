@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/cart/presentation/widgets/cart_body.dart';
 import 'package:shopix_user/feature/cart/presentation/widgets/checkout.dart';
 
@@ -70,7 +71,7 @@ class CartItemTile extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'EGP ${item.price.toStringAsFixed(0)}',
+                '${context.tr('restaurant.EGP')} ${item.price.toStringAsFixed(0)}',
                 style: TextStyle(
                   fontSize: 16.r,
                   fontWeight: FontWeight.w600,

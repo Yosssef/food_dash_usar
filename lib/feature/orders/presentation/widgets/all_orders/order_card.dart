@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/all_orders/outline_button.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/all_orders/stars_diplay.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/all_orders/status_pill.dart';
@@ -108,7 +109,7 @@ class OrderHistoryCard extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                'EGP ${order.total.toInt()} ',
+                                '${context.tr("restaurant.EGP")} ${order.total.toInt()} ',
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   color: Colors.grey.shade500,
@@ -130,13 +131,19 @@ class OrderHistoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ?order.status != OrderStatus.preparing
-                        ? OutlineButton(label: 'Reorder', onTap: onReorder)
+                        ? OutlineButton(
+                            label: context.tr("orders.reorder"),
+                            onTap: onReorder,
+                          )
                         : null,
                     ?order.status != OrderStatus.delivered
                         ? null
                         : Row(
                             children: [
-                              OutlineButton(label: 'Rate', onTap: onRate),
+                              OutlineButton(
+                                label: context.tr("orders.rate"),
+                                onTap: onRate,
+                              ),
                               SizedBox(width: 10.w),
                               StarsDisplay(rating: order.rating ?? 0),
                             ],

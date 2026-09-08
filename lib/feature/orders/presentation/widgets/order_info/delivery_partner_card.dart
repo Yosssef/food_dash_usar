@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/order_info/round_icon_button.dart';
 
 class DeliveryPartnerCard extends StatelessWidget {
@@ -67,7 +68,7 @@ class DeliveryPartnerCard extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  'Your delivery partner',
+                  context.tr("orders.your_delivery_partner"),
                   style: TextStyle(
                     fontSize: 12.5.sp,
                     color: Colors.grey.shade500,

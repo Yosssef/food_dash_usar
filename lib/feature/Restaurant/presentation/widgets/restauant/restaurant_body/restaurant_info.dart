@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class RestaurantInfo extends StatelessWidget {
   const RestaurantInfo({super.key});
@@ -27,7 +28,10 @@ class RestaurantInfo extends StatelessWidget {
 
                 Text("American", style: TextStyle(fontSize: 18.sp)),
 
-                Text("1.2 Km", style: TextStyle(fontSize: 18.sp)),
+                Text(
+                  "1.2 ${context.tr("restaurant.Km")}",
+                  style: TextStyle(fontSize: 18.sp),
+                ),
               ],
             ),
             Row(
@@ -44,7 +48,7 @@ class RestaurantInfo extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
-                      "20-30 min",
+                      "20-30 ${context.tr("restaurant.minute")}",
                       style: TextStyle(
                         fontSize: 18.sp,
                         color: Theme.of(context).colorScheme.secondary,
@@ -62,7 +66,7 @@ class RestaurantInfo extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
-                      "Free delivery over 450 EGP",
+                      context.tr('restaurant.free_delivery_badge'),
                       style: TextStyle(
                         fontSize: 18.sp,
                         color: Theme.of(context).colorScheme.primary,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurants_view/round_ghost_button.dart';
 
@@ -57,7 +58,10 @@ class CustomRestaurantsAppBar extends StatelessWidget {
                 20.w + ((maxLeftPadding - 20.w) * t);
 
             return Padding(
-              padding: EdgeInsets.only(left: dynamicLeftPadding),
+              padding: EdgeInsets.only(
+                left: context.isarbic() ? 0 : dynamicLeftPadding,
+                right: context.isarbic() ? dynamicLeftPadding : 0,
+              ),
               child: Text(
                 title,
                 style: TextStyle(

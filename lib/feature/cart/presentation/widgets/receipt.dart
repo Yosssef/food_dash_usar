@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class Receipt extends StatelessWidget {
   const Receipt({super.key});
@@ -30,7 +31,7 @@ class Receipt extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Subtotal",
+                    context.tr('cart.subtotal'),
                     style: TextStyle(
                       fontSize: 20.sp,
 
@@ -38,28 +39,7 @@ class Receipt extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "EGP 355",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Delivery fee",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                  ),
-                  Text(
-                    "EGP 15",
+                    "${context.tr('restaurant.EGP')} 355",
                     style: TextStyle(
                       fontSize: 20.sp,
 
@@ -72,7 +52,7 @@ class Receipt extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Tax",
+                    context.tr('cart.delivery_fee'),
                     style: TextStyle(
                       fontSize: 20.sp,
 
@@ -80,7 +60,28 @@ class Receipt extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "EGP 18",
+                    "${context.tr('restaurant.EGP')} 15",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.tr('cart.tax'),
+                    style: TextStyle(
+                      fontSize: 20.sp,
+
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                  Text(
+                    "${context.tr('restaurant.EGP')} 18",
                     style: TextStyle(
                       fontSize: 20.sp,
 
@@ -95,7 +96,7 @@ class Receipt extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Total",
+                    context.tr('cart.total'),
                     style: TextStyle(
                       fontSize: 23.sp,
                       fontWeight: FontWeight.bold,
@@ -103,7 +104,7 @@ class Receipt extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "EGP 388",
+                    "${context.tr('restaurant.EGP')} 388",
                     style: TextStyle(
                       fontSize: 23.sp,
                       fontWeight: FontWeight.bold,

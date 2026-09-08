@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 enum OrderStatus { delivered, cancelled, preparing }
 
@@ -11,23 +12,23 @@ class StatusPill extends StatelessWidget {
   Widget build(BuildContext context) {
     late final Color fg;
     late final Color bg;
-    late final String label;
+    late final String key;
 
     switch (status) {
       case OrderStatus.delivered:
         fg = Theme.of(context).colorScheme.secondary;
         bg = Theme.of(context).colorScheme.secondary.withValues(alpha: 0.12);
-        label = 'Delivered';
+        key = context.tr("orders.status_delivered");
         break;
       case OrderStatus.cancelled:
         fg = Theme.of(context).colorScheme.error;
         bg = Theme.of(context).colorScheme.error.withValues(alpha: 0.1);
-        label = 'Cancelled';
+        key = context.tr("orders.status_cancelled");
         break;
       case OrderStatus.preparing:
         fg = Theme.of(context).colorScheme.primary;
         bg = Theme.of(context).colorScheme.primary.withValues(alpha: 0.12);
-        label = 'Preparing';
+        key = context.tr("orders.status_preparing");
         break;
     }
 
@@ -38,7 +39,7 @@ class StatusPill extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
-        label,
+        key,
         style: TextStyle(
           fontSize: 11.sp,
           color: fg,

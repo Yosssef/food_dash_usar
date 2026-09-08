@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class HotOfferBanner extends StatelessWidget {
   final Animation<double> pulseAnimation;
@@ -63,7 +64,7 @@ class HotOfferBanner extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hot Offers 🔥",
+                        context.tr("restaurant.hot_offers"),
                         style: TextStyle(
                           fontSize: 17.sp,
                           fontWeight: FontWeight.w800,
@@ -72,7 +73,7 @@ class HotOfferBanner extends StatelessWidget {
                       ),
                       SizedBox(height: 2.h),
                       Text(
-                        "Save up to 25% on combo meals today",
+                        context.tr("restaurant.hot_offers_subtitle"),
                         style: TextStyle(
                           fontSize: 12.5.sp,
                           color: Colors.white.withValues(alpha: 0.9),

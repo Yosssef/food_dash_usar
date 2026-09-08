@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class OptionCard extends StatelessWidget {
   final IconData icon;
@@ -71,7 +72,7 @@ class OptionCard extends StatelessWidget {
           InkWell(
             onTap: onChangeTap,
             child: Text(
-              "Change",
+              context.tr("checkout.change"),
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.bold,

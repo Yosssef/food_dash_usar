@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/order_info/delivery_partner_card.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/order_info/order_info_haeder.dart';
 import 'package:shopix_user/feature/orders/presentation/widgets/order_info/order_tracking_card.dart';
@@ -30,23 +31,26 @@ class OrdersInfo extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 OrderTrackingCard(
-                  steps: const [
+                  steps: [
                     TrackingStep(
-                      label: 'Order confirmed',
+                      label: context.tr("orders.step_order_confirmed"),
                       time: '6:02 PM',
                       isDone: true,
                     ),
                     TrackingStep(
-                      label: 'Preparing your food',
+                      label: context.tr("orders.step_preparing_food"),
                       time: '6:05 PM',
                       isDone: true,
                     ),
                     TrackingStep(
-                      label: 'Out for delivery',
+                      label: context.tr("orders.step_out_for_delivery"),
                       time: '6:21 PM',
                       isDone: true,
                     ),
-                    TrackingStep(label: 'Delivered', isDone: false),
+                    TrackingStep(
+                      label: context.tr("orders.step_delivered"),
+                      isDone: false,
+                    ),
                   ],
                 ),
               ],

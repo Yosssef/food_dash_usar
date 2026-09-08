@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class HomeHader extends StatelessWidget {
   const HomeHader({super.key});
@@ -21,7 +22,7 @@ class HomeHader extends StatelessWidget {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 Text(
-                  'Deliver to',
+                  context.tr("home.deliver_to"),
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).colorScheme.secondary,

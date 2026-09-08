@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurants_view/category_list.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurants_view/custom_appbar.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurants_view/empty.dart';
@@ -118,6 +119,7 @@ final List<RestaurantResultModel> demoRestaurants = [
 class RestaurantsResultsView extends StatefulWidget {
   final ResultsMode mode;
   final String? initialCategory;
+  final String? initialCatgoryKey;
   final String? initialQuery;
 
   const RestaurantsResultsView({
@@ -125,6 +127,7 @@ class RestaurantsResultsView extends StatefulWidget {
     required this.mode,
     this.initialCategory,
     this.initialQuery,
+    this.initialCatgoryKey,
   });
 
   @override
@@ -133,6 +136,7 @@ class RestaurantsResultsView extends StatefulWidget {
 
 class _RestaurantsResultsViewState extends State<RestaurantsResultsView> {
   late String? selectedCategory = widget.initialCategory;
+  late String? selectedCategorykey = widget.initialCatgoryKey;
   late final TextEditingController searchController = TextEditingController(
     text: widget.initialQuery,
   );
@@ -225,16 +229,18 @@ class _RestaurantsResultsViewState extends State<RestaurantsResultsView> {
     }
   }
 
-  String get _title {
+  String _title(BuildContext context) {
     switch (widget.mode) {
       case ResultsMode.favorites:
-        return 'Your Favorites';
+        return context.tr("restaurant_results.your_favorites");
       case ResultsMode.category:
-        return selectedCategory ?? 'Categories';
+        return context.tr(
+          selectedCategorykey ?? "restaurant_results.categories_title",
+        );
       case ResultsMode.search:
-        return 'Search';
+        return context.tr("restaurant_results.search_title");
       case ResultsMode.seeall:
-        return 'All Restaurants';
+        return context.tr("restaurant_results.all_restaurants");
     }
   }
 
@@ -242,7 +248,15 @@ class _RestaurantsResultsViewState extends State<RestaurantsResultsView> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final results = _filtered;
-
+    final allCategorieslabel = [
+      context.tr("restaurant_results.all"),
+      context.tr("home.category_burgers"),
+      context.tr("home.category_pizza"),
+      context.tr("home.category_desserts"),
+      context.tr("home.category_drinks"),
+      context.tr("home.category_bakery"),
+      context.tr("home.category_seafood"),
+    ];
     return Scaffold(
       backgroundColor: scheme.surface,
       body: CustomScrollView(
@@ -254,15 +268,17 @@ class _RestaurantsResultsViewState extends State<RestaurantsResultsView> {
             scheme: scheme,
             widget: widget,
             collapseT: _collapseT,
-            title: _title,
+            title: _title(context),
           ),
 
           if (widget.mode == ResultsMode.category ||
               widget.mode == ResultsMode.seeall)
             CategoryList(
+              allCategorieslabel: allCategorieslabel,
               allCategories: _allCategories,
               selectedCategory: selectedCategory,
               all: _all,
+
               ontap: (category) => setState(() => selectedCategory = category),
             ),
           SliverToBoxAdapter(child: SizedBox(height: 4.h)),

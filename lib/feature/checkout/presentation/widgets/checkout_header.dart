@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class CheckoutHaeder extends StatelessWidget {
   const CheckoutHaeder({super.key, required this.scheme});
@@ -31,7 +32,7 @@ class CheckoutHaeder extends StatelessWidget {
         ),
         SizedBox(width: 15.w),
         Text(
-          "Checkout",
+          context.tr('checkout.title'),
           style: TextStyle(
             color: scheme.secondary,
             fontSize: 27.sp,

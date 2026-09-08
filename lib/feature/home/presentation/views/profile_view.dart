@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
+import 'package:shopix_user/feature/home/presentation/manger/settings_cubit.dart';
 import 'package:shopix_user/feature/home/presentation/widgets/profile/custom_appbar.dart';
 import 'package:shopix_user/feature/home/presentation/widgets/profile/identity_card.dart';
 import 'package:shopix_user/feature/home/presentation/widgets/profile/profile_row.dart';
@@ -21,7 +24,10 @@ class ProfileView extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 24.h),
           children: [
-            CustomProfileAppBar(scheme: scheme, title: 'Profile'),
+            CustomProfileAppBar(
+              scheme: scheme,
+              title: context.tr("profile.title"),
+            ),
             SizedBox(height: 22.h),
 
             IdentityCard(scheme: scheme),
@@ -30,51 +36,51 @@ class ProfileView extends StatelessWidget {
             QuickData(),
             SizedBox(height: 20.h),
 
-            SectionLabel('Account'),
+            SectionLabel(context.tr("profile.account_section")),
             ProfileRow(
               icon: Icons.receipt_long_outlined,
-              label: 'My Orders',
+              label: context.tr("profile.my_orders"),
               onTap: () => Navigator.pushNamed(context, kOrdersview),
             ),
             ProfileRow(
               icon: Icons.favorite_border_rounded,
-              label: 'Favorites',
+              label: context.tr("profile.favorites"),
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) =>
+                  builder: (_) =>
                       RestaurantsResultsView(mode: ResultsMode.favorites),
                 ),
               ),
             ),
             ProfileRow(
               icon: Icons.location_on_outlined,
-              label: 'Saved Addresses',
+              label: context.tr("profile.saved_addresses"),
               onTap: () {},
             ),
             ProfileRow(
               icon: Icons.account_balance_wallet_outlined,
-              label: 'Payment Methods',
+              label: context.tr("profile.payment_methods"),
               onTap: () {},
             ),
 
             SizedBox(height: 16.h),
-            SectionLabel('More'),
+            SectionLabel(context.tr("profile.more_section")),
             ProfileRow(
               icon: Icons.settings_outlined,
-              label: 'Settings',
+              label: context.tr("profile.settings"),
               onTap: () => Navigator.pushNamed(context, kSettings),
             ),
             ProfileRow(
               icon: Icons.help_outline_rounded,
-              label: 'Help & Support',
+              label: context.tr("profile.help_support"),
               onTap: () {},
             ),
             ProfileRow(
               icon: Icons.logout_rounded,
-              label: 'Log Out',
+              label: context.tr('profile.log_out'),
               color: scheme.error,
-              onTap: () {},
+              onTap: () => context.read<SettingsCubit>().logout(),
             ),
           ],
         ),

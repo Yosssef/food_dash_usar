@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 
 class FoodList extends StatelessWidget {
@@ -19,7 +20,8 @@ class FoodList extends StatelessWidget {
             padding: EdgeInsets.only(right: 12.w),
             child: buildCategoryItem(
               icon: categories[index].icon,
-              label: categories[index].title,
+              label: categories[index].key,
+              context: context,
               color: Colors.white,
               backgroundColor: categories[index].backgroundColor,
               ontap: () => Navigator.push(
@@ -27,6 +29,7 @@ class FoodList extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (_) => RestaurantsResultsView(
                     mode: ResultsMode.category,
+                    initialCatgoryKey: categories[index].key,
                     initialCategory: categories[index].title,
                   ),
                 ),
@@ -45,6 +48,7 @@ Widget buildCategoryItem({
   required Color backgroundColor,
   required VoidCallback ontap,
   required Color color,
+  required BuildContext context,
 }) {
   return GestureDetector(
     onTap: ontap,
@@ -67,7 +71,7 @@ Widget buildCategoryItem({
           SizedBox(height: 6.h),
 
           Text(
-            label,
+            context.tr(label),
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
@@ -84,43 +88,51 @@ class CategoryModel {
   final String title;
   final FaIconData icon;
   final Color backgroundColor;
+  final String key;
 
   CategoryModel({
     required this.title,
     required this.icon,
     required this.backgroundColor,
+    required this.key,
   });
 }
 
 final List<CategoryModel> categories = [
   CategoryModel(
-    title: 'Burgers',
+    key: 'home.category_burgers',
     icon: FontAwesomeIcons.burger,
     backgroundColor: const Color(0xFFD66344),
+    title: 'Burgers',
   ),
   CategoryModel(
-    title: 'Pizza',
+    key: 'home.category_pizza',
     icon: FontAwesomeIcons.pizzaSlice,
     backgroundColor: const Color(0xFFBD3B22),
+    title: 'Pizza',
   ),
   CategoryModel(
-    title: 'Desserts',
+    key: 'home.category_desserts',
     icon: FontAwesomeIcons.iceCream,
     backgroundColor: const Color(0xFFC47B95),
+    title: 'Desserts',
   ),
   CategoryModel(
-    title: 'Drinks',
+    key: 'home.category_drinks',
     icon: FontAwesomeIcons.glassWater,
     backgroundColor: const Color(0xFF8C6247),
+    title: 'Drinks',
   ),
   CategoryModel(
-    title: 'Bakery',
+    key: 'home.category_bakery',
     icon: FontAwesomeIcons.breadSlice,
     backgroundColor: const Color(0xFFC98A5B),
+    title: 'Bakery',
   ),
   CategoryModel(
-    title: 'Seafood',
+    key: 'home.category_seafood',
     icon: FontAwesomeIcons.fish,
     backgroundColor: const Color(0xFF5A8192),
+    title: 'Seafood',
   ),
 ];

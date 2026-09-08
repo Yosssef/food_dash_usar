@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/checkout/presentation/widgets/toggle_tab.dart';
 
 class CheckoutStates extends StatelessWidget {
@@ -19,7 +20,8 @@ class CheckoutStates extends StatelessWidget {
       children: [
         Expanded(
           child: ToggleTab(
-            label: "Delivery",
+            label: context.tr('checkout.delivery'),
+
             selected: !isPickup,
             color: Theme.of(context).colorScheme.secondary,
             onTap: ondeliverytap,
@@ -28,7 +30,8 @@ class CheckoutStates extends StatelessWidget {
         SizedBox(width: 15.w),
         Expanded(
           child: ToggleTab(
-            label: "Pickup",
+            label: context.tr('checkout.pickup'),
+
             selected: isPickup,
             color: Theme.of(context).colorScheme.secondary,
             onTap: onpickuptap,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/checkout/presentation/widgets/checkout_header.dart';
 import 'package:shopix_user/feature/checkout/presentation/widgets/checkout_receipt.dart';
 import 'package:shopix_user/feature/checkout/presentation/widgets/checkout_states.dart';
@@ -45,7 +46,11 @@ class _CheckOutViewState extends State<CheckOutView> {
                       icon: isPickup
                           ? Icons.storefront_rounded
                           : Icons.location_on_outlined,
-                      title: isPickup ? "Select Store Branch" : "Home",
+                      title: context.tr(
+                        isPickup
+                            ? "checkout.select_store_branch"
+                            : "checkout.home_label",
+                      ),
                       subtitle: isPickup
                           ? "Nasr City Branch (14 Abbas El Akkad)"
                           : "14 Abbas El Akkad St, Nasr City",
@@ -56,10 +61,16 @@ class _CheckOutViewState extends State<CheckOutView> {
 
                     OptionCard(
                       icon: Icons.account_balance_wallet_outlined,
-                      title: isPickup ? "Pay at Store" : "Cash on delivery",
-                      subtitle: isPickup
-                          ? "Pay when you pick up your order"
-                          : "Pay when the order arrives",
+                      title: context.tr(
+                        isPickup
+                            ? "checkout.pay_at_store"
+                            : "checkout.cash_on_delivery",
+                      ),
+                      subtitle: context.tr(
+                        isPickup
+                            ? "checkout.pay_at_store_subtitle"
+                            : "checkout.pay_on_arrival_subtitle",
+                      ),
                       onChangeTap: () {},
                       accentColor: scheme.primary,
                     ),

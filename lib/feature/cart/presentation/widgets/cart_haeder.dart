@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class CartHaeder extends StatelessWidget {
   const CartHaeder({super.key});
@@ -35,7 +36,7 @@ class CartHaeder extends StatelessWidget {
 
         SizedBox(width: 15.w),
         Text(
-          "Your Cart",
+          context.tr("cart.your_cart"),
           style: TextStyle(
             color: Theme.of(context).colorScheme.secondary,
             fontSize: 27.sp,

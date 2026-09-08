@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 
 class CoustomSearchBar extends StatelessWidget {
@@ -26,7 +27,7 @@ class CoustomSearchBar extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: Theme.of(context).colorScheme.surfaceContainer,
-          hintText: "Search restaurants or dishes",
+          hintText: context.tr("home.search_hint"),
           hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 16.sp),
           prefixIcon: Icon(
             Icons.search,

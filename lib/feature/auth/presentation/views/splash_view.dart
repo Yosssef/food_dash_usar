@@ -1,7 +1,11 @@
 import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
+import 'package:shopix_user/feature/auth/presentation/views/login_view.dart';
+import 'package:shopix_user/feature/home/presentation/manger/settings_cubit.dart';
 import 'package:shopix_user/main.dart';
 
 /// ============================================================
@@ -85,8 +89,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     curve: const Interval(0.75, 1.0, curve: Curves.easeOut),
   );
 
-  static const String _word = 'FoodDash';
-
   @override
   void initState() {
     super.initState();
@@ -99,8 +101,8 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         _orbit.repeat();
       }
     });
-
-    _scheduleExit();
+    final settings = SettingsCubit().loadSettings();
+    _scheduleExit(!settings.hasCompletedOnboarding);
   }
 
   List<_Particle> _generateParticles(int count) {
@@ -125,7 +127,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     });
   }
 
-  Future<void> _scheduleExit() async {
+  Future<void> _scheduleExit(bool fristtime) async {
     await Future.delayed(const Duration(milliseconds: 7000));
     if (!mounted) return;
 
@@ -136,7 +138,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
     Navigator.pushReplacement(
       context,
-      _CircleRevealRoute(page: const MyHomePage(), center: center),
+      _CircleRevealRoute(
+        page: fristtime ? LoginView() : const MyHomePage(),
+        center: center,
+      ),
     );
   }
 
@@ -153,6 +158,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final lang = context.watch<SettingsCubit>().state.locale.languageCode;
 
     return Scaffold(
       backgroundColor: scheme.surface,
@@ -260,7 +266,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                 AnimatedBuilder(
                   animation: _wordmarkT,
                   builder: (context, _) => _StaggeredWordmark(
-                    text: _word,
+                    text: "FoodDash",
                     progress: _wordmarkT.value,
                     style: TextStyle(
                       fontSize: 30.sp,
@@ -274,7 +280,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                 FadeTransition(
                   opacity: _taglineFade,
                   child: Text(
-                    'Good food, fast.',
+                    AppStrings.t('splash.slogn', lang),
                     style: TextStyle(
                       fontSize: 13.5.sp,
                       color: Colors.grey.shade500,

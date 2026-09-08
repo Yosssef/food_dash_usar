@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class PlaceOrderButton extends StatelessWidget {
   const PlaceOrderButton({super.key, required this.scheme});
@@ -32,7 +33,7 @@ class PlaceOrderButton extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 14.h),
             child: Center(
               child: Text(
-                "Place order · EGP 317",
+                "${context.tr('checkout.place_order')} · 317 ${context.tr('restaurant.EGP')}",
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.bold,

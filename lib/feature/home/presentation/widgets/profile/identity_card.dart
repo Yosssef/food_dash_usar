@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/feature/auth/presentation/views/register_view.dart';
+import 'package:shopix_user/feature/home/presentation/manger/settings_cubit.dart';
 
 class IdentityCard extends StatelessWidget {
   const IdentityCard({super.key, required this.scheme});
@@ -8,6 +11,8 @@ class IdentityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.read<SettingsCubit>().loadSettings();
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(18.r),
@@ -26,18 +31,27 @@ class IdentityCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              CircleAvatar(
-                radius: 34.r,
-                backgroundColor: scheme.secondary,
-                child: Text(
-                  'Y',
-                  style: TextStyle(
-                    fontSize: 26.sp,
-                    fontWeight: FontWeight.w800,
-                    color: scheme.onPrimary,
-                  ),
-                ),
-              ),
+              settings.userProfileImagePath != null
+                  ? ProfileAvatar(
+                      userProfileImagePath: settings.userProfileImagePath,
+                      isDark: settings.isDark,
+                      onChangePhoto: () =>
+                          context.read<SettingsCubit>().pickProfileImage(),
+                    )
+                  : CircleAvatar(
+                      radius: 34.r,
+                      backgroundColor: scheme.secondary,
+                      child: Text(
+                        (settings.userName ?? '').trim().isEmpty
+                            ? '?'
+                            : (settings.userName ?? '').trim()[0].toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 26.sp,
+                          fontWeight: FontWeight.w800,
+                          color: scheme.onPrimary,
+                        ),
+                      ),
+                    ),
               Positioned(
                 right: 0,
                 bottom: 0,
@@ -64,7 +78,7 @@ class IdentityCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Youssef Ahmed',
+                  settings.userName!,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w800,
@@ -75,7 +89,7 @@ class IdentityCard extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  'youssef@email.com',
+                  settings.userEmail!,
                   style: TextStyle(
                     fontSize: 12.5.sp,
                     color: Colors.grey.shade500,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body.dart';
 
 class MenuItemCard extends StatelessWidget {
@@ -80,7 +81,7 @@ class MenuItemCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'EGP ${item.price.toInt()}',
+                      '${context.tr("restaurant.EGP")} ${item.price.toInt()}',
                       style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w800,

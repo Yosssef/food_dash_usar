@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 
 class RestaurantsBanner extends StatelessWidget {
@@ -11,7 +12,7 @@ class RestaurantsBanner extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Restaurants near you",
+          context.tr("home.restaurants_near_you"),
           style: TextStyle(
             fontSize: 20.sp,
             color: Theme.of(context).colorScheme.onSurface,
@@ -26,7 +27,7 @@ class RestaurantsBanner extends StatelessWidget {
             ),
           ),
           child: Text(
-            "see all",
+            context.tr("home.see_all"),
             style: TextStyle(
               fontSize: 16.sp,
               color: Theme.of(context).colorScheme.secondary,

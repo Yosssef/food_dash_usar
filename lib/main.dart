@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/data/user_data.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
+import 'package:shopix_user/core/theme/app_theme.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/resaurant_view.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 import 'package:shopix_user/feature/auth/presentation/views/login_view.dart';
@@ -10,13 +16,20 @@ import 'package:shopix_user/feature/auth/presentation/views/register_view.dart';
 import 'package:shopix_user/feature/auth/presentation/views/splash_view.dart';
 import 'package:shopix_user/feature/cart/presentation/views/cart_view.dart';
 import 'package:shopix_user/feature/checkout/presentation/views/check_out_view.dart';
+import 'package:shopix_user/feature/home/presentation/manger/settings_cubit.dart';
+import 'package:shopix_user/feature/home/presentation/manger/settings_state.dart';
 import 'package:shopix_user/feature/home/presentation/views/home_view.dart';
 import 'package:shopix_user/feature/home/presentation/views/profile_view.dart';
 import 'package:shopix_user/feature/home/presentation/views/setting_view.dart';
 import 'package:shopix_user/feature/orders/presentation/views/orders_info.dart';
 import 'package:shopix_user/feature/orders/presentation/views/all_orders.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserSettingsAdapter());
+  await Hive.openBox<UserSettings>('settingsBox');
+  await AppStrings.load();
   runApp(const FoodDash());
 }
 
@@ -25,60 +38,39 @@ class FoodDash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        kHome: (context) => const MyHomePage(),
-        kRestaurant: (context) => const RestaurantView(),
-        kCart: (context) => const CartView(),
-        kCheckout: (context) => const CheckOutView(),
-        kOrdersview: (context) => const OredersView(),
-        kOrderinfo: (context) => const OrdersInfo(),
-        kProfile: (context) => const ProfileView(),
-        kSplach: (context) => const SplashView(),
-        kSettings: (context) => const SettingsView(),
-        kRegister: (context) => const RegisterView(),
-        kLogin: (context) => const LoginView(),
-      },
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Cairo',
-        colorScheme: const ColorScheme(
-          brightness: Brightness.light,
-
-          primary: Color(0xffE0A23A),
-          onPrimary: Colors.white,
-          secondary: Color.fromARGB(255, 53, 109, 70),
-          onSecondary: Colors.white,
-          error: Color(0xffD6543F),
-          onError: Colors.white,
-          surface: Color(0xffFAF6EF),
-          surfaceContainer: Colors.white,
-          surfaceContainerHighest: Color.fromARGB(240, 255, 255, 255),
-
-          onSurface: Colors.black87,
-          shadow: Colors.black,
-
-          //
-          //
-          //
-          //
-          // primary: Color.fromARGB(255, 3, 149, 93),
-          // onPrimary: Colors.white,
-
-          // secondary: Color.fromARGB(255, 152, 70, 220),
-          // onSecondary: Colors.white,
-
-          // error: Color(0xFFE52E2E),
-          // onError: Colors.white,
-
-          // surface: Color(0xFF10141D),
-          // surfaceContainer: Color.fromARGB(255, 39, 39, 49),
-          // surfaceContainerHighest: Color.fromARGB(240, 50, 50, 50),
-          // onSurface: Color(0xFFEFF2F7),
-          // shadow: Colors.white,
-        ),
+    return BlocProvider(
+      create: (context) => SettingsCubit(),
+      child: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          return MaterialApp(
+            routes: {
+              kHome: (context) => const MyHomePage(),
+              kRestaurant: (context) => const RestaurantView(),
+              kCart: (context) => const CartView(),
+              kCheckout: (context) => const CheckOutView(),
+              kOrdersview: (context) => const OredersView(),
+              kOrderinfo: (context) => const OrdersInfo(),
+              kProfile: (context) => const ProfileView(),
+              kSplach: (context) => const SplashView(),
+              kSettings: (context) => const SettingsView(),
+              kRegister: (context) => const RegisterView(),
+              kLogin: (context) => const LoginView(),
+            },
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state.themeMode,
+            initialRoute: kSplach,
+            locale: state.locale,
+            supportedLocales: const [Locale('en'), Locale('ar')],
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+          );
+        },
       ),
-      initialRoute: kSplach,
     );
   }
 }
@@ -175,26 +167,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.w600,
                     fontSize: 12.sp,
                   ),
-                  items: const [
+                  items: [
                     BottomNavigationBarItem(
-                      icon: FaIcon(FontAwesomeIcons.house, size: 20),
-                      activeIcon: Icon(Icons.home, size: 24),
-                      label: 'Home',
+                      icon: const FaIcon(FontAwesomeIcons.house, size: 20),
+                      activeIcon: const Icon(Icons.home, size: 24),
+                      label: context.tr('nav.home'),
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.receipt_long_outlined, size: 22),
                       activeIcon: Icon(Icons.receipt_long_rounded, size: 24),
-                      label: 'Orders',
+                      label: context.tr('nav.orders'),
                     ),
                     BottomNavigationBarItem(
                       icon: FaIcon(FontAwesomeIcons.heart, size: 20),
                       activeIcon: Icon(Icons.favorite_rounded, size: 24),
-                      label: 'Favorites',
+                      label: context.tr('nav.favorites'),
                     ),
                     BottomNavigationBarItem(
                       icon: FaIcon(FontAwesomeIcons.gear, size: 20),
                       activeIcon: FaIcon(FontAwesomeIcons.gear, size: 20),
-                      label: 'Setting',
+                      label: context.tr('nav.setting'),
                     ),
                   ],
                 ),

@@ -9,9 +9,11 @@ class CategoryList extends StatelessWidget {
     required this.selectedCategory,
     required this.all,
     required this.ontap,
+    required this.allCategorieslabel,
   });
 
   final List<String> allCategories;
+  final List<String> allCategorieslabel;
   final String? selectedCategory;
   final String all;
   final ValueChanged<String> ontap;
@@ -27,10 +29,11 @@ class CategoryList extends StatelessWidget {
           itemCount: allCategories.length,
           separatorBuilder: (_, _) => SizedBox(width: 8.w),
           itemBuilder: (context, index) {
+            final catkey = allCategorieslabel[index];
             final cat = allCategories[index];
             final selected = cat == (selectedCategory ?? all);
             return CategoryChip(
-              label: cat,
+              label: catkey,
               selected: selected,
               onTap: () => ontap(cat),
             );

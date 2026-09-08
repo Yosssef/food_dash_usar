@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 
 class Empty extends StatelessWidget {
@@ -16,25 +17,27 @@ class Empty extends StatelessWidget {
     switch (mode) {
       case ResultsMode.favorites:
         icon = Icons.favorite_border_rounded;
-        title = 'No favorites yet';
-        subtitle = 'Tap the heart on any restaurant to save it here.';
+        title = context.tr("restaurant_results.empty_favorites_title");
+        subtitle = context.tr("restaurant_results.empty_favorites_subtitle");
         break;
       case ResultsMode.category:
         icon = Icons.ramen_dining_outlined;
-        title = 'Nothing here yet';
-        subtitle = 'No restaurants in this category right now.';
+        title = context.tr("restaurant_results.empty_category_title");
+        subtitle = context.tr("restaurant_results.empty_category_subtitle");
         break;
       case ResultsMode.search:
         icon = Icons.search_off_rounded;
-        title = query.trim().isEmpty ? 'Search for something' : 'No results';
+        title = query.trim().isEmpty
+            ? context.tr("restaurant_results.empty_search_prompt")
+            : context.tr("restaurant_results.empty_search_no_results");
         subtitle = query.trim().isEmpty
-            ? 'Try a restaurant name.'
-            : 'Nothing matched "$query". Try a different name.';
+            ? context.tr('restaurant_results.empty_search_hint')
+            : "${context.tr("restaurant_results.empty_search_no_match")} $query ${context.tr("restaurant_results.empty_search_no_match2")}";
         break;
       case ResultsMode.seeall:
         icon = Icons.search_off_rounded;
-        title = 'No matches';
-        subtitle = 'Try a different category or search term.';
+        title = context.tr("restaurant_results.empty_generic_title");
+        subtitle = context.tr("restaurant_results.empty_generic_subtitle");
         break;
     }
 

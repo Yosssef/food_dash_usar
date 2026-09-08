@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class Checkout extends StatelessWidget {
   const Checkout({super.key});
@@ -30,7 +31,7 @@ class Checkout extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Center(
               child: Text(
-                "Go To Checkout",
+                context.tr('cart.go_to_checkout'),
                 style: TextStyle(
                   fontSize: 27.sp,
                   fontWeight: FontWeight.bold,

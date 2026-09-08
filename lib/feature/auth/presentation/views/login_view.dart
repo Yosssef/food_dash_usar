@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/auth/presentation/widgets/auth_filed.dart';
+import 'package:shopix_user/feature/home/presentation/manger/settings_cubit.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -25,6 +28,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final lang = context.watch<SettingsCubit>().state.locale.languageCode;
 
     return Scaffold(
       backgroundColor: scheme.primary,
@@ -49,7 +53,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               SizedBox(height: 16.h),
               Text(
-                'Welcome back',
+                AppStrings.t("auth.welcome_back", lang),
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w900,
@@ -58,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               SizedBox(height: 4.h),
               Text(
-                'Sign in to order your favorites',
+                AppStrings.t("auth.sign_in_subtitle", lang),
                 style: TextStyle(
                   fontSize: 13.sp,
                   color: Colors.white.withValues(alpha: 0.85),
@@ -87,14 +91,14 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     AuthField(
                       controller: _emailController,
-                      hint: 'Email',
+                      hint: AppStrings.t("auth.email_hint", lang),
                       icon: Icons.mail_outline_rounded,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     SizedBox(height: 14.h),
                     AuthField(
                       controller: _passwordController,
-                      hint: 'Password',
+                      hint: AppStrings.t("auth.password_hint", lang),
                       icon: Icons.lock_outline_rounded,
                       obscure: _obscure,
                       trailing: IconButton(
@@ -119,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                         child: Text(
-                          'Forgot password?',
+                          AppStrings.t("auth.forgot_password", lang),
                           style: TextStyle(
                             fontSize: 12.5.sp,
                             fontWeight: FontWeight.w700,
@@ -142,7 +146,7 @@ class _LoginViewState extends State<LoginView> {
                         elevation: 0,
                       ),
                       child: Text(
-                        'Log In',
+                        AppStrings.t("auth.log_in", lang),
                         style: TextStyle(
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w800,
@@ -154,7 +158,7 @@ class _LoginViewState extends State<LoginView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't have an account? ",
+                          AppStrings.t("auth.no_account", lang),
                           style: TextStyle(
                             fontSize: 13.sp,
                             color: Colors.grey.shade500,
@@ -163,7 +167,7 @@ class _LoginViewState extends State<LoginView> {
                         GestureDetector(
                           onTap: () => Navigator.pushNamed(context, kRegister),
                           child: Text(
-                            'Register',
+                            AppStrings.t("auth.register", lang),
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w800,

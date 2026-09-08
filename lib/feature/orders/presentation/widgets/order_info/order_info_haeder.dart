@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class OrderInfoHeader extends StatelessWidget {
   const OrderInfoHeader({super.key});
@@ -36,7 +37,7 @@ class OrderInfoHeader extends StatelessWidget {
           Column(
             children: [
               Text(
-                "Order #10482",
+                "${context.tr("orders.your_order")} #10482",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontSize: 27.sp,
@@ -44,7 +45,7 @@ class OrderInfoHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                "Arriving in  ~12 min",
+                "${context.tr("orders.arriving_in")}  ~12 ${context.tr("restaurant.minute")}",
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 20.sp,

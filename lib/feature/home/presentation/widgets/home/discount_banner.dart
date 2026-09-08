@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class DiscountBanner extends StatelessWidget {
   const DiscountBanner({super.key});
@@ -30,7 +31,7 @@ class DiscountBanner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "20% off your first order",
+                    context.tr("home.discount_title"),
                     style: TextStyle(
                       fontSize: 22.sp,
                       fontWeight: FontWeight.w900,
@@ -38,7 +39,7 @@ class DiscountBanner extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "use code WELCOME20",
+                    context.tr("home.discount_code"),
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
@@ -49,18 +50,21 @@ class DiscountBanner extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(right: 15.w),
-            width: 60.w,
-            height: 60.h,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onSecondary.withAlpha(50),
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Icon(
-              Icons.discount_outlined,
-              size: 32.r,
-              color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              margin: EdgeInsets.only(right: 15.w),
+              width: 60.w,
+              height: 60.h,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onSecondary.withAlpha(50),
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Icon(
+                Icons.discount_outlined,
+                size: 32.r,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class Coupon extends StatelessWidget {
   const Coupon({super.key});
@@ -10,7 +11,7 @@ class Coupon extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: Theme.of(context).colorScheme.surfaceContainer,
-        hintText: "Coupon Code",
+        hintText: context.tr('cart.coupon_code_hint'),
         hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 22.sp),
         prefixIcon: Icon(
           Icons.discount,

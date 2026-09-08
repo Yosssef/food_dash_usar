@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/category_item.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/hot_offer_banner.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restauant/restaurant_body/manu_haedr_button.dart';
@@ -89,7 +90,7 @@ class _RestaurantBodyState extends State<RestaurantBody>
                     children: [
                       MenuHeaderButton(
                         icon: Icons.star,
-                        label: "Popular",
+                        label: context.tr("restaurant.tab_popular"),
                         selected: !showCategories,
                         onTap: _openPopular,
                         color: Theme.of(context).colorScheme.primary,
@@ -97,7 +98,7 @@ class _RestaurantBodyState extends State<RestaurantBody>
 
                       MenuHeaderButton(
                         icon: Icons.list,
-                        label: "Categories",
+                        label: context.tr("restaurant.tab_categories"),
                         selected: showCategories,
                         onTap: _openCategoriesGrid,
                         color: Theme.of(context).colorScheme.secondary,
