@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/home/presentation/widgets/home/discount_banner.dart';
 import 'package:shopix_user/feature/home/presentation/widgets/home/food_list.dart';
 import 'package:shopix_user/feature/home/presentation/widgets/home/home_haeder.dart';
@@ -32,7 +33,9 @@ class HomeView extends StatelessWidget {
               ),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                sliver: const SliverToBoxAdapter(child: FoodList()),
+                sliver: SliverToBoxAdapter(
+                  child: FoodList(key: ValueKey(context.isarbic())),
+                ),
               ),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),

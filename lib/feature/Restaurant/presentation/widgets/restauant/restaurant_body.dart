@@ -31,7 +31,7 @@ class _RestaurantBodyState extends State<RestaurantBody>
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     )..repeat(reverse: true);
-    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.09).animate(
+    _pulseAnimation = Tween<double>(begin: 1.01, end: 1.09).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOutQuart),
     );
   }

@@ -43,6 +43,7 @@ class FoodDash extends StatelessWidget {
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
           return MaterialApp(
+            themeAnimationDuration: Duration.zero,
             routes: {
               kHome: (context) => const MyHomePage(),
               kRestaurant: (context) => const RestaurantView(),

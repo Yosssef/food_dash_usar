@@ -39,7 +39,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr7k3_2DZ2mDM_hW9D1kLyXYcNRhQ5R0ZFJxYN9brmMpFVPzsHI6U8RgMh&s=10',
     rating: 4.8,
-    deliveryTime: '20-30 min',
+    deliveryTime: '20-30 ',
     distanceKm: 1.2,
     categories: const ['Burgers', 'Desserts'],
     isFavorite: true,
@@ -50,7 +50,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://www.mcdonalds.eg/Cms_Data/Contents/Ar/Media/ChickenLTO2026/AR-640x470.jpg',
     rating: 4.5,
-    deliveryTime: '25-35 min',
+    deliveryTime: '25-35 ',
     distanceKm: 2.1,
     categories: const ['Burgers'],
   ),
@@ -60,7 +60,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://eg-24.com/wp-content/uploads/2026/04/%D9%85%D9%86%D9%8A%D9%88-%D9%83%D9%86%D8%AA%D8%A7%D9%83%D9%8A-%D9%85%D8%B7%D8%B9%D9%85-%D9%82%D8%A7%D8%A6%D9%85%D8%A9-%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF-%D8%B1%D9%82%D9%85-%D8%A7%D9%84%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-%D8%B9%D8%B1%D8%A8%D9%8A-KFC-Menu-prices-updated-2024-1.webp',
     rating: 4.4,
-    deliveryTime: '15-25 min',
+    deliveryTime: '15-25 ',
     distanceKm: 0.9,
     categories: const ['Burgers'],
   ),
@@ -70,7 +70,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfZF6l9byfmuUuzt-mNHHTHItzaKytgbgkFEdQ8OAK2OKEVykaW2h3_Hnb&s=10',
     rating: 4.6,
-    deliveryTime: '25-35 min',
+    deliveryTime: '25-35 ',
     distanceKm: 1.7,
     categories: const ['Pizza'],
     isFavorite: true,
@@ -81,7 +81,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-psGkbbSoZZh42gOy4J0NYCVd8471jwEyW3ZTF-zM6bdjXHKZzCkHMbvt&s=10',
     rating: 4.3,
-    deliveryTime: '30-40 min',
+    deliveryTime: '30-40 ',
     distanceKm: 3.0,
     categories: const ['Pizza'],
   ),
@@ -91,7 +91,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReHNr0RkE4nEFxpUdhHtXyCxQ15h_R-PfbMrgru1XCjw&s=10',
     rating: 4.2,
-    deliveryTime: '20-30 min',
+    deliveryTime: '20-30 ',
     distanceKm: 2.4,
     categories: const ['Burgers'],
   ),
@@ -100,7 +100,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     name: 'Bazooka',
     imageUrl: 'https://dalilzag.com//uploads/2023/03/v7IPEztJCxuWnAFKlZyR.jpg',
     rating: 4.1,
-    deliveryTime: '20-30 min',
+    deliveryTime: '20-30 ',
     distanceKm: 1.5,
     categories: const ['Seafood'],
   ),
@@ -110,7 +110,7 @@ final List<RestaurantResultModel> demoRestaurants = [
     imageUrl:
         'https://images.deliveryhero.io/image/hungerstation/restaurant/android_cover_photo/0a50dd8d8a5b541abfc4bfa1a33c24d6.jpg',
     rating: 4.7,
-    deliveryTime: '15-25 min',
+    deliveryTime: '15-25 ',
     distanceKm: 1.0,
     categories: const ['Desserts', 'Bakery'],
   ),

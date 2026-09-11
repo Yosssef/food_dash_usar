@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/views/restaurants_results.dart';
 import 'package:shopix_user/feature/Restaurant/presentation/widgets/restaurants_view/favorite_heart.dart';
 
@@ -111,7 +112,7 @@ class RestaurantResultCard extends StatelessWidget {
                         ),
                         SizedBox(width: 3.w),
                         Text(
-                          restaurant.deliveryTime,
+                          "${restaurant.deliveryTime} ${context.tr('restaurant.minute')} ",
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: 12.5.sp,
@@ -119,7 +120,7 @@ class RestaurantResultCard extends StatelessWidget {
                         ),
                         _dot(),
                         Text(
-                          '${restaurant.distanceKm.toStringAsFixed(1)} km',
+                          '${restaurant.distanceKm.toStringAsFixed(1)} ${context.tr('restaurant.Km')} ',
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: 12.5.sp,

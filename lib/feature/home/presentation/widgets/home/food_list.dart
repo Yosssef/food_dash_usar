@@ -98,7 +98,7 @@ class CategoryModel {
   });
 }
 
-final List<CategoryModel> categories = [
+List<CategoryModel> get categories => [
   CategoryModel(
     key: 'home.category_burgers',
     icon: FontAwesomeIcons.burger,

@@ -1,13 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopix_user/core/constant.dart';
+import 'package:shopix_user/core/localization/app_strings.dart';
 
 class RestaurantHeader extends StatelessWidget {
   const RestaurantHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isaarbic = context.isarbic();
     return Container(
       width: double.infinity,
       height: 240.h,
@@ -53,7 +56,8 @@ class RestaurantHeader extends StatelessWidget {
 
             Positioned(
               top: 55.h,
-              right: 12.w,
+              right: isaarbic ? null : 12.w,
+              left: isaarbic ? 12.w : null,
               child: GestureDetector(
                 onTap: () => Navigator.pushNamed(context, kCart),
                 child: SizedBox(
@@ -80,7 +84,8 @@ class RestaurantHeader extends StatelessWidget {
 
                       Positioned(
                         top: 0,
-                        right: 0,
+                        right: isaarbic ? null : 0,
+                        left: isaarbic ? 0 : null,
                         child: Container(
                           padding: EdgeInsets.all(2.r),
                           constraints: BoxConstraints(
@@ -112,7 +117,8 @@ class RestaurantHeader extends StatelessWidget {
             ),
             Positioned(
               top: 10.h,
-              left: 12.w,
+              right: isaarbic ? 12.w : null,
+              left: isaarbic ? null : 12.w,
               child: GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Container(
@@ -150,9 +156,11 @@ class _FavouratButtonState extends State<FavouratButton> {
   bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
+    final isaarbic = context.isarbic();
     return Positioned(
       top: 10.h,
-      right: 12.w,
+      left: isaarbic ? 12.w : null,
+      right: isaarbic ? null : 12.w,
       child: GestureDetector(
         onTap: () => setState(() {
           isFavorite = !isFavorite;

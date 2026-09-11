@@ -46,6 +46,7 @@ extension TranslateX on BuildContext {
   String tr(String key) {
     return AppStrings.t(key, Localizations.localeOf(this).languageCode);
   }
+
   bool isarbic() {
     return Localizations.localeOf(this).languageCode == 'ar';
   }

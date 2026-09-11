@@ -50,7 +50,8 @@ class RestaurantInfo extends StatelessWidget {
                     child: Text(
                       "20-30 ${context.tr("restaurant.minute")}",
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 14.sp,
+
                         color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w800,
                       ),
@@ -68,7 +69,7 @@ class RestaurantInfo extends StatelessWidget {
                     child: Text(
                       context.tr('restaurant.free_delivery_badge'),
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 14.sp,
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.w800,
                       ),

@@ -522,25 +522,28 @@ class _StaggeredWordmark extends StatelessWidget {
     final letters = text.split('');
     final step = 1.0 / letters.length;
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(letters.length, (i) {
-        final start = i * step * 0.7; // windows overlap a bit
-        final end = (start + step * 1.6).clamp(0.0, 1.0);
-        final localT = ((progress - start) / (end - start)).clamp(0.0, 1.0);
-        final eased = Curves.easeOutCubic.transform(localT);
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(letters.length, (i) {
+          final start = i * step * 0.7; // windows overlap a bit
+          final end = (start + step * 1.6).clamp(0.0, 1.0);
+          final localT = ((progress - start) / (end - start)).clamp(0.0, 1.0);
+          final eased = Curves.easeOutCubic.transform(localT);
 
-        return Transform.translate(
-          offset: Offset(0, (1 - eased) * 16),
-          child: Transform.rotate(
-            angle: (1 - eased) * -0.05,
-            child: Opacity(
-              opacity: localT.clamp(0.0, 1.0),
-              child: Text(letters[i], style: style),
+          return Transform.translate(
+            offset: Offset(0, (1 - eased) * 16),
+            child: Transform.rotate(
+              angle: (1 - eased) * -0.05,
+              child: Opacity(
+                opacity: localT.clamp(0.0, 1.0),
+                child: Text(letters[i], style: style),
+              ),
             ),
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 }

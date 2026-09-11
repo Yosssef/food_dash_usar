@@ -13,8 +13,8 @@ class DiscountBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(27.r),
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.secondary,
-            Theme.of(context).colorScheme.secondary.withAlpha(230),
+            Theme.of(context).colorScheme.secondary.withGreen(120),
+            Theme.of(context).colorScheme.secondary.withAlpha(210),
           ],
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
