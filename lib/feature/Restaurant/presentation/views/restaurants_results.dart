@@ -248,6 +248,15 @@ class _RestaurantsResultsViewState extends State<RestaurantsResultsView> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final results = _filtered;
+    final Map<String, String> allCategorieskeys = {
+      'All': 'restaurant_results.all',
+      'Burgers': 'home.category_burgers',
+      'Pizza': 'home.category_pizza',
+      'Desserts': 'home.category_desserts',
+      'Drinks': 'home.category_drinks',
+      'Bakery': 'home.category_bakery',
+      'Seafood': 'home.category_seafood',
+    };
     final allCategorieslabel = [
       context.tr("restaurant_results.all"),
       context.tr("home.category_burgers"),
@@ -279,7 +288,10 @@ class _RestaurantsResultsViewState extends State<RestaurantsResultsView> {
               selectedCategory: selectedCategory,
               all: _all,
 
-              ontap: (category) => setState(() => selectedCategory = category),
+              ontap: (category) => setState(() {
+                selectedCategory = category;
+                selectedCategorykey = allCategorieskeys[category];
+              }),
             ),
           SliverToBoxAdapter(child: SizedBox(height: 4.h)),
           if (widget.mode == ResultsMode.search ||
